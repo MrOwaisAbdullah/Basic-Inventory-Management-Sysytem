@@ -18,20 +18,19 @@ function displayProducts() {
         var priceCell = document.createElement("td");
         priceCell.textContent = "PKR ".concat(product.price.toFixed(2));
         row.appendChild(priceCell);
+        var actionsCell = document.createElement("td");
         var editIcon = document.createElement("i");
         editIcon.className = "fas fa-edit edit-icon";
         editIcon.style.cursor = "pointer";
         editIcon.onclick = function () { return editProduct(index); };
-        var editCell = document.createElement("td");
-        editCell.appendChild(editIcon);
-        row.appendChild(editCell);
         var deleteIcon = document.createElement("i");
         deleteIcon.className = "fas fa-trash delete-icon";
         deleteIcon.style.cursor = "pointer";
         deleteIcon.onclick = function () { return deleteProduct(index); };
-        var deleteCell = document.createElement("td");
-        deleteCell.appendChild(deleteIcon);
-        row.appendChild(deleteCell);
+        actionsCell.appendChild(editIcon);
+        actionsCell.appendChild(document.createTextNode(" "));
+        actionsCell.appendChild(deleteIcon);
+        row.appendChild(actionsCell);
         tableBody.appendChild(row);
     });
 }
@@ -75,9 +74,12 @@ function addProduct() {
 }
 function editProduct(index) {
     var product = products[index];
-    document.getElementById("productName").value = product.name;
-    document.getElementById("productQuantity").value = product.quantity.toString();
-    document.getElementById("productPrice").value = product.price.toString();
+    document.getElementById("productName").value =
+        product.name;
+    document.getElementById("productQuantity").value =
+        product.quantity.toString();
+    document.getElementById("productPrice").value =
+        product.price.toString();
     currentEditIndex = index;
     document.getElementById("addProductButton").textContent = "Update Product";
 }
@@ -87,10 +89,10 @@ function deleteProduct(index) {
     displayProducts();
 }
 function saveToLocalStorage() {
-    localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem("products", JSON.stringify(products));
 }
 function loadFromLocalStorage() {
-    var storedProducts = localStorage.getItem('products');
+    var storedProducts = localStorage.getItem("products");
     if (storedProducts) {
         products = JSON.parse(storedProducts);
     }

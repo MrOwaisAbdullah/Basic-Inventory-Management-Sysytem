@@ -2,21 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-html,
 body {
   height: 100%;
   width: 100%;
-}
-
-main {
-  height: 100vh;
+  color: #01150b;
+  background-color: #f5fffa;
 }
 
 header {
-  background-color: #4caf50;
+  background-color: #12f592;
   color: white;
   text-align: center;
   padding: 25px 0;
@@ -27,6 +24,7 @@ table {
   width: 80%;
   margin: 20px auto;
   border-collapse: collapse;
+  overflow: hidden;
 }
 
 table,
@@ -42,22 +40,23 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #f8fafa;
 }
 
 tr:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: #ffffffce;
 }
 
 .edit-icon,
 .delete-icon {
   font-size: 18px;
-  margin: 0 10px;
+  margin: 1px 10px;
+  padding-bottom: 5px;
 }
 
 .edit-icon:hover,
 .delete-icon:hover {
-  color: #007bff;
+  color: #3ccdf7;
 }
 
 .productForm {
@@ -79,7 +78,7 @@ tr:nth-child(odd) {
 
 .productForm button {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: #75e7f9;
   color: white;
   border: none;
   border-radius: 5px;
@@ -89,7 +88,7 @@ tr:nth-child(odd) {
 }
 
 .productForm button:hover {
-  background-color: #45a049;
+  background-color: #3ccdf7;
 }
 
 footer {
