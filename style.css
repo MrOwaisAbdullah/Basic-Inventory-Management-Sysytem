@@ -47,6 +47,14 @@ tr:nth-child(odd) {
   background-color: #ffffffce;
 }
 
+.delete-icon{
+    color: red;
+}
+
+.edit-icon{
+    color: rgb(114, 182, 12);
+}
+
 .edit-icon,
 .delete-icon {
   font-size: 18px;
@@ -60,10 +68,11 @@ tr:nth-child(odd) {
 }
 
 .productForm {
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 
 .productForm input[type="text"],
@@ -95,10 +104,11 @@ footer {
   background-color: #333;
   color: white;
   text-align: center;
+  margin-top: 50px;
   padding: 10px 0;
   font-size: 0.8em;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
