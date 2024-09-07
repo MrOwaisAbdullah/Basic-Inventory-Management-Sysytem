@@ -12,14 +12,15 @@ body {
 }
 
 main {
-    height: 100vh;
+  height: 100vh;
 }
 
 header {
   background-color: #4caf50;
   color: white;
   text-align: center;
-  padding: 10px 0;
+  padding: 25px 0;
+  margin-bottom: 3em;
 }
 
 table {
@@ -46,6 +47,17 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
   background-color: #ffffff;
+}
+
+.edit-icon,
+.delete-icon {
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+  color: #007bff;
 }
 
 .productForm {
@@ -87,4 +99,13 @@ footer {
   padding: 10px 0;
   font-size: 0.8em;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 0.7em;
+    margin-bottom: 2em;
+  }
 }

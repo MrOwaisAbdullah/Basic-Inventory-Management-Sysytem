@@ -3,9 +3,11 @@ var products = [
     { name: "Smartphone", quantity: 20, price: 50000 },
     { name: "Headphones", quantity: 50, price: 3000 },
 ];
+var currentEditIndex = null;
 function displayProducts() {
     var tableBody = document.querySelector("tbody");
-    products.forEach(function (product) {
+    tableBody.innerHTML = "";
+    products.forEach(function (product, index) {
         var row = document.createElement("tr");
         var nameCell = document.createElement("td");
         nameCell.textContent = product.name;
@@ -16,10 +18,23 @@ function displayProducts() {
         var priceCell = document.createElement("td");
         priceCell.textContent = "PKR ".concat(product.price.toFixed(2));
         row.appendChild(priceCell);
+        var editIcon = document.createElement("i");
+        editIcon.className = "fas fa-edit edit-icon";
+        editIcon.style.cursor = "pointer";
+        editIcon.onclick = function () { return editProduct(index); };
+        var editCell = document.createElement("td");
+        editCell.appendChild(editIcon);
+        row.appendChild(editCell);
+        var deleteIcon = document.createElement("i");
+        deleteIcon.className = "fas fa-trash delete-icon";
+        deleteIcon.style.cursor = "pointer";
+        deleteIcon.onclick = function () { return deleteProduct(index); };
+        var deleteCell = document.createElement("td");
+        deleteCell.appendChild(deleteIcon);
+        row.appendChild(deleteCell);
         tableBody.appendChild(row);
     });
 }
-displayProducts();
 function addProduct() {
     var productNameInput = document.getElementById("productName");
     var productQuantityInput = document.getElementById("productQuantity");
@@ -43,14 +58,46 @@ function addProduct() {
     }
     else if (name && quantity && price) {
         var newProduct = { name: name, quantity: quantity, price: price };
-        products.push(newProduct);
+        if (currentEditIndex === null) {
+            products.push(newProduct);
+        }
+        else {
+            products[currentEditIndex] = newProduct;
+            currentEditIndex = null;
+        }
+        saveToLocalStorage();
+        displayProducts();
+        productNameInput.value = "";
+        productQuantityInput.value = "";
+        productPriceInput.value = "";
+        document.getElementById("addProductButton").textContent = "Add Product";
     }
-    var tableBody = document.querySelector("tbody");
-    tableBody.innerHTML = "";
-    displayProducts();
-    productNameInput.value = "";
-    productQuantityInput.value = "";
-    productPriceInput.value = "";
 }
+function editProduct(index) {
+    var product = products[index];
+    document.getElementById("productName").value = product.name;
+    document.getElementById("productQuantity").value = product.quantity.toString();
+    document.getElementById("productPrice").value = product.price.toString();
+    currentEditIndex = index;
+    document.getElementById("addProductButton").textContent = "Update Product";
+}
+function deleteProduct(index) {
+    products.splice(index, 1);
+    saveToLocalStorage();
+    displayProducts();
+}
+function saveToLocalStorage() {
+    localStorage.setItem('products', JSON.stringify(products));
+}
+function loadFromLocalStorage() {
+    var storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+        products = JSON.parse(storedProducts);
+    }
+}
+window.onload = function () {
+    loadFromLocalStorage();
+    displayProducts();
+};
 var addProductButton = document.getElementById("addProductButton");
 addProductButton.addEventListener("click", addProduct);
